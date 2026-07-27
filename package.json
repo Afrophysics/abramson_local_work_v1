@@ -1,0 +1,32 @@
+{
+  "name": "abramson-local-work-v1",
+  "version": "1.0.0",
+  "description": "MongoDB client updates store for abramson local work",
+  "type": "module",
+  "main": "src/db/clientUpdates.js",
+  "scripts": {
+    "demo": "node src/scripts/demo.js",
+    "seed": "node src/scripts/seed.js",
+    "seed:wipe": "node src/scripts/seed.js --wipe",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Afrophysics/abramson_local_work_v1.git"
+  },
+  "keywords": ["mongodb", "mongoose", "client-updates"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Afrophysics/abramson_local_work_v1/issues"
+  },
+  "homepage": "https://github.com/Afrophysics/abramson_local_work_v1#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.8.1"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.2.0"
+  }
+}
