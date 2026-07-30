@@ -38,14 +38,18 @@ export function createMetricCard(options) {
     return card;
 }
 /**
- * Shared delete button used by metric cards and pivot table rows.
+ * Shared delete button used by metric cards and pivot table.
+ * Uses an X icon; accessible name comes from aria-label.
  */
 export function createDeleteButton(options) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = options.className ?? "btn-delete";
-    button.textContent = "Delete";
     button.setAttribute("aria-label", options.label);
+    const icon = document.createElement("span");
+    icon.className = "btn-delete__icon";
+    icon.setAttribute("aria-hidden", "true");
+    button.appendChild(icon);
     button.addEventListener("click", (event) => {
         event.stopPropagation();
         options.onClick();
@@ -54,6 +58,7 @@ export function createDeleteButton(options) {
 }
 /**
  * Accordion collapsible control for the pivot table section.
+ * Chevron-only; accessible name comes from aria-label.
  */
 export function createAccordionButton(options) {
     let expanded = options.expanded;
@@ -61,17 +66,15 @@ export function createAccordionButton(options) {
     button.type = "button";
     button.className = "btn-accordion";
     button.setAttribute("aria-expanded", String(expanded));
+    button.setAttribute("aria-label", expanded ? "Collapse Matter Metrics Measured" : "Expand Matter Metrics Measured");
     const chevron = document.createElement("span");
     chevron.className = "btn-accordion__chevron";
     chevron.setAttribute("aria-hidden", "true");
-    const text = document.createElement("span");
-    text.className = "btn-accordion__text";
-    text.textContent = expanded ? "Collapse" : "Expand";
-    button.append(chevron, text);
+    button.appendChild(chevron);
     button.addEventListener("click", () => {
         expanded = !expanded;
         button.setAttribute("aria-expanded", String(expanded));
-        text.textContent = expanded ? "Collapse" : "Expand";
+        button.setAttribute("aria-label", expanded ? "Collapse Matter Metrics Measured" : "Expand Matter Metrics Measured");
         options.onToggle(expanded);
     });
     return button;
