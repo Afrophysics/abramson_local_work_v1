@@ -89,33 +89,18 @@ export function mountPivotTable(container, rows = SAMPLE_ROWS) {
         th.textContent = column;
         headRow.appendChild(th);
     }
-    const actionsTh = document.createElement("th");
-    actionsTh.scope = "col";
-    actionsTh.className = "row-actions";
-    actionsTh.textContent = "Actions";
-    headRow.appendChild(actionsTh);
     thead.appendChild(headRow);
     const tbody = document.createElement("tbody");
-    const emptyState = document.createElement("p");
-    emptyState.className = "pivot-empty";
-    emptyState.hidden = true;
-    emptyState.textContent = "No matter metrics to display.";
-    const syncEmptyState = () => {
-        const hasRows = tbody.children.length > 0;
-        table.hidden = !hasRows;
-        emptyState.hidden = hasRows;
-    };
     for (const row of rows) {
-        tbody.appendChild(createMatterRow(row, syncEmptyState));
+        tbody.appendChild(createMatterRow(row));
     }
     table.append(thead, tbody);
     tableWrap.appendChild(table);
-    body.append(tableWrap, emptyState);
+    body.append(tableWrap);
     section.append(header, body);
     container.appendChild(section);
-    syncEmptyState();
 }
-function createMatterRow(row, onRowRemoved) {
+function createMatterRow(row) {
     const tr = document.createElement("tr");
     tr.dataset.rowId = row.id;
     const cells = [
@@ -129,19 +114,6 @@ function createMatterRow(row, onRowRemoved) {
         td.textContent = value;
         tr.appendChild(td);
     }
-    const actionsTd = document.createElement("td");
-    actionsTd.className = "row-actions";
-    actionsTd.appendChild(createDeleteButton({
-        label: `Delete row ${row.actionTitle}`,
-        onClick: () => {
-            tr.classList.add("removing");
-            window.setTimeout(() => {
-                tr.remove();
-                onRowRemoved();
-            }, 180);
-        },
-    }));
-    tr.appendChild(actionsTd);
     return tr;
 }
 //# sourceMappingURL=pivotTable.js.map
