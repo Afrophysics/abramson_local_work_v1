@@ -2,6 +2,7 @@
   "name": "matter-metrics-dashboard",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Simple matter metrics dashboard with metric cards and pivot table",
   "scripts": {
     "build": "tsc",
