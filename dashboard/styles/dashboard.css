@@ -1,0 +1,330 @@
+:root {
+  --ink: #0f1c24;
+  --ink-soft: #3a4f5c;
+  --paper: #f3f6f8;
+  --surface: #ffffff;
+  --line: #d5dde3;
+  --accent: #0d7377;
+  --accent-deep: #08575a;
+  --danger: #b42318;
+  --danger-soft: #fef3f2;
+  --shadow: 0 12px 32px rgba(15, 28, 36, 0.08);
+  --radius: 14px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(13, 115, 119, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(15, 28, 36, 0.08), transparent 50%),
+    linear-gradient(180deg, #e8eef2 0%, var(--paper) 45%, #e4ebf0 100%);
+}
+
+#app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.dashboard-header {
+  margin-bottom: 1.75rem;
+  animation: rise-in 0.55s ease both;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.dashboard-header p {
+  margin: 0.55rem 0 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  max-width: 36rem;
+}
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.35rem 1.35rem;
+  min-height: 140px;
+  animation: rise-in 0.6s ease both;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+}
+
+.metric-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 28, 36, 0.12);
+}
+
+.metric-card.removing {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.metric-card__label {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.metric-card__value {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  color: var(--accent-deep);
+  line-height: 1;
+}
+
+.btn-delete {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-delete:hover,
+.btn-delete:focus-visible {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: #fecdca;
+  outline: none;
+}
+
+.pivot-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: rise-in 0.7s ease both;
+  animation-delay: 0.12s;
+}
+
+.pivot-section.removing {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pivot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(13, 115, 119, 0.06), transparent 55%),
+    var(--surface);
+}
+
+.pivot-header__title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.pivot-header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.pivot-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.btn-accordion {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn-accordion:hover,
+.btn-accordion:focus-visible {
+  background: #e3ecee;
+  border-color: #b9c7cf;
+  outline: none;
+}
+
+.btn-accordion__chevron {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+  margin-top: -0.15rem;
+}
+
+.btn-accordion[aria-expanded="false"] .btn-accordion__chevron {
+  transform: rotate(-45deg);
+  margin-top: 0.1rem;
+}
+
+.pivot-body {
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  max-height: 800px;
+  opacity: 1;
+}
+
+.pivot-body.is-collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.pivot-table-wrap {
+  overflow-x: auto;
+  padding: 0.25rem 0 0.5rem;
+}
+
+table.pivot-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.pivot-table th,
+.pivot-table td {
+  text-align: left;
+  padding: 0.85rem 1.15rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.pivot-table th {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: rgba(243, 246, 248, 0.7);
+}
+
+.pivot-table tbody tr {
+  transition: background 0.15s ease, opacity 0.2s ease;
+}
+
+.pivot-table tbody tr:hover {
+  background: rgba(13, 115, 119, 0.04);
+}
+
+.pivot-table tbody tr.removing {
+  opacity: 0;
+}
+
+.pivot-table .row-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.pivot-table .btn-delete {
+  position: static;
+}
+
+.pivot-empty {
+  margin: 0;
+  padding: 1.5rem 1.15rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  #app {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .metrics-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pivot-header {
+    flex-wrap: wrap;
+  }
+
+  .pivot-table th,
+  .pivot-table td {
+    padding: 0.75rem 0.85rem;
+  }
+}

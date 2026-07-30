@@ -1,0 +1,14 @@
+{
+  "name": "matter-metrics-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple matter metrics dashboard with metric cards and pivot table",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx --yes serve . -p 3000"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
