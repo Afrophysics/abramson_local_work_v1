@@ -61,56 +61,17 @@ export interface DeleteButtonOptions {
 }
 
 /**
- * Shared delete button used by metric cards and pivot table rows.
+ * Shared delete button used by metric cards.
  */
 export function createDeleteButton(options: DeleteButtonOptions): HTMLButtonElement {
   const button = document.createElement("button");
   button.type = "button";
   button.className = options.className ?? "btn-delete";
   button.textContent = "Delete";
-  //button.prefixIcon="e-icon e-file-cancel";
   button.setAttribute("aria-label", options.label);
   button.addEventListener("click", (event) => {
     event.stopPropagation();
     options.onClick();
   });
-  return button;
-}
-
-export interface AccordionButtonOptions {
-  expanded: boolean;
-  onToggle: (expanded: boolean) => void;
-}
-
-/**
- * Accordion collapsible control for the pivot table section.
- */
-export function createAccordionButton(
-  options: AccordionButtonOptions
-): HTMLButtonElement {
-  let expanded = options.expanded;
-
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "btn-accordion";
-  button.setAttribute("aria-expanded", String(expanded));
-
-  const chevron = document.createElement("span");
-  chevron.className = "btn-accordion__chevron";
-  chevron.setAttribute("aria-hidden", "true");
-
-  const text = document.createElement("span");
-  text.className = "btn-accordion__text";
-  text.textContent = expanded ? "Collapse" : "Expand"; //No need for textContent
-
-  button.append(chevron)//, text);
-
-  button.addEventListener("click", () => {
-    expanded = !expanded;
-    button.setAttribute("aria-expanded", String(expanded));
-    //text.textContent = expanded ? "Collapse" : "Expand";
-    options.onToggle(expanded);
-  });
-
   return button;
 }

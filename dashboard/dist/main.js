@@ -1,14 +1,12 @@
 import { buildSkeleton } from "./skeleton.js";
-import { mountMetricCards } from "./metricCards.js";
-import { mountPivotTable } from "./pivotTable.js";
+import { mountAllMetricRows } from "./metricCards.js";
 function bootstrap() {
     const root = document.getElementById("app");
     if (!root) {
         throw new Error('Missing root element with id "app"');
     }
-    const { metricsRow, pivotMount } = buildSkeleton(root);
-    mountMetricCards(metricsRow);
-    mountPivotTable(pivotMount);
+    const { metricsRows } = buildSkeleton(root);
+    mountAllMetricRows(metricsRows);
 }
 document.addEventListener("DOMContentLoaded", bootstrap);
 //# sourceMappingURL=main.js.map
