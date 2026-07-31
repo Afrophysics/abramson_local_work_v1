@@ -7,8 +7,17 @@ export function buildSkeleton(root) {
     const header = document.createElement("header");
     header.className = "dashboard-header";
     header.innerHTML = `
-    <h1>Matter Metrics</h1>
-    <p>Track retainer activity and settlement outcomes across open matters.</p>
+    <img
+      class="dashboard-logo"
+      src="./public/abramsonLogo%20copy.png"
+      alt="Abramson"
+      width="160"
+      height="48"
+    />
+    <div class="dashboard-header__copy">
+      <h1>Matter Metrics</h1>
+      <p>Track retainer activity and settlement outcomes across open matters.</p>
+    </div>
   `;
     const metricsRow = document.createElement("section");
     metricsRow.className = "metrics-row";

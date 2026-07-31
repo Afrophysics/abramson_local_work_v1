@@ -42,8 +42,26 @@ body {
 }
 
 .dashboard-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 1.1rem;
+  row-gap: 0.85rem;
   margin-bottom: 1.75rem;
   animation: rise-in 0.55s ease both;
+}
+
+.dashboard-logo {
+  display: block;
+  width: auto;
+  height: 2.75rem;
+  max-width: 11rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.dashboard-header__copy {
+  min-width: 0;
 }
 
 .dashboard-header h1 {
@@ -340,6 +358,14 @@ table.pivot-table {
 @media (max-width: 720px) {
   #app {
     padding: 1.25rem 1rem 2rem;
+  }
+
+  .dashboard-header {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-logo {
+    height: 2.35rem;
   }
 
   .metrics-row {
