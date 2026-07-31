@@ -219,6 +219,9 @@ body {
 }
 
 .btn-accordion {
+  position: static;
+  top: 1.70rem;
+  right: 1.70rem;
   appearance: none;
   border: 1px solid var(--line);
   background: var(--paper);
@@ -316,7 +319,9 @@ table.pivot-table {
 }
 
 .pivot-table .btn-delete {
-  position: static;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .pivot-empty {

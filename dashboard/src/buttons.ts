@@ -108,15 +108,17 @@ export function createAccordionButton(
   const chevron = document.createElement("span");
   chevron.className = "btn-accordion__chevron";
   chevron.setAttribute("aria-hidden", "true");
-  button.appendChild(chevron);
+
+  const text = document.createElement("span");
+  text.className = "btn-accordion__text";
+  text.textContent = expanded ? "Collapse" : "Expand"; //No need for textContent
+
+  button.append(chevron)//, text);
 
   button.addEventListener("click", () => {
     expanded = !expanded;
     button.setAttribute("aria-expanded", String(expanded));
-    button.setAttribute(
-      "aria-label",
-      expanded ? "Collapse Matter Metrics Measured" : "Expand Matter Metrics Measured"
-    );
+    //text.textContent = expanded ? "Collapse" : "Expand";
     options.onToggle(expanded);
   });
 
