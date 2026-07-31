@@ -7,7 +7,8 @@ export interface MetricDefinition {
   format: "integer" | "currency";
 }
 
-const DEFAULT_METRICS: MetricDefinition[] = [
+/** Row 1 — three metric cards */
+const METRICS_ROW_1: MetricDefinition[] = [
   {
     id: "wc-retainers-signed",
     title: "WC Retainers Signed",
@@ -20,14 +21,70 @@ const DEFAULT_METRICS: MetricDefinition[] = [
     value: 187500,
     format: "currency",
   },
+  {
+    id: "settlement-accepted",
+    title: "Settlement Accepted",
+    value: 18,
+    format: "integer",
+  },
+];
+
+/** Row 2 — three metric cards */
+const METRICS_ROW_2: MetricDefinition[] = [
+  {
+    id: "move-to-litigation-decision",
+    title: "Move to Litigation Decision",
+    value: 7,
+    format: "integer",
+  },
+  {
+    id: "total-amount-recieved-from-retainers",
+    title: "Total Amount Recieved From Retainers",
+    value: 245000,
+    format: "currency",
+  },
+  {
+    id: "case-completed-by-intake",
+    title: "Case Completed by Intake",
+    value: 31,
+    format: "integer",
+  },
+];
+
+/** Row 3 — three metric cards */
+const METRICS_ROW_3: MetricDefinition[] = [
+  {
+    id: "calls-made-today",
+    title: "Calls Made Today",
+    value: 24,
+    format: "integer",
+  },
+  {
+    id: "reasons-clients-unable-to-sign",
+    title: "Reasons clients are unable to sign",
+    value: 5,
+    format: "integer",
+  },
+  {
+    id: "approved-mediation-brief-by-attorney",
+    title: "Approved Mediation Brief by Attorney",
+    value: 12,
+    format: "integer",
+  },
+];
+
+export const METRIC_ROWS: MetricDefinition[][] = [
+  METRICS_ROW_1,
+  METRICS_ROW_2,
+  METRICS_ROW_3,
 ];
 
 /**
- * Mounts TypeScript-built metric cards into the dashboard metrics row.
+ * Mounts TypeScript-built metric cards into a dashboard metrics row.
  */
 export function mountMetricCards(
   container: HTMLElement,
-  metrics: MetricDefinition[] = DEFAULT_METRICS
+  metrics: MetricDefinition[]
 ): void {
   container.replaceChildren();
 
@@ -40,6 +97,19 @@ export function mountMetricCards(
     });
     container.appendChild(card);
   }
+}
+
+/**
+ * Mounts all metric card rows (three rows of three).
+ */
+export function mountAllMetricRows(rows: HTMLElement[]): void {
+  rows.forEach((row, index) => {
+    const metrics = METRIC_ROWS[index];
+    if (!metrics) {
+      return;
+    }
+    mountMetricCards(row, metrics);
+  });
 }
 
 export { createMetricCard, createDeleteButton };
