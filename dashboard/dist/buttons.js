@@ -45,6 +45,7 @@ export function createDeleteButton(options) {
     button.type = "button";
     button.className = options.className ?? "btn-delete";
     button.textContent = "Delete";
+    //button.prefixIcon="e-icon e-file-cancel";
     button.setAttribute("aria-label", options.label);
     button.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -66,12 +67,12 @@ export function createAccordionButton(options) {
     chevron.setAttribute("aria-hidden", "true");
     const text = document.createElement("span");
     text.className = "btn-accordion__text";
-    text.textContent = expanded ? "Collapse" : "Expand";
-    button.append(chevron, text);
+    text.textContent = expanded ? "Collapse" : "Expand"; //No need for textContent
+    button.append(chevron); //, text);
     button.addEventListener("click", () => {
         expanded = !expanded;
         button.setAttribute("aria-expanded", String(expanded));
-        text.textContent = expanded ? "Collapse" : "Expand";
+        //text.textContent = expanded ? "Collapse" : "Expand";
         options.onToggle(expanded);
     });
     return button;
