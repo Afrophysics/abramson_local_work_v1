@@ -13,6 +13,20 @@ const DEFAULT_METRICS = [
         format: "currency",
     },
 ];
+const SECONDARY_METRICS = [
+    {
+        id: "settlement-accepted",
+        title: "Settlement Accepted",
+        value: 18,
+        format: "integer",
+    },
+    {
+        id: "move-to-litigation-decision",
+        title: "Move to Litigation Decision",
+        value: 7,
+        format: "integer",
+    },
+];
 /**
  * Mounts TypeScript-built metric cards into the dashboard metrics row.
  */
@@ -27,6 +41,12 @@ export function mountMetricCards(container, metrics = DEFAULT_METRICS) {
         });
         container.appendChild(card);
     }
+}
+/**
+ * Mounts the secondary integer metric cards between the primary row and pivot table.
+ */
+export function mountSecondaryMetricCards(container, metrics = SECONDARY_METRICS) {
+    mountMetricCards(container, metrics);
 }
 export { createMetricCard, createDeleteButton };
 //# sourceMappingURL=metricCards.js.map

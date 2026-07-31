@@ -26,14 +26,20 @@ export function buildSkeleton(root) {
   metricsRow.id = "metrics-row";
   metricsRow.setAttribute("aria-label", "Key metrics");
 
+  const secondaryMetricsRow = document.createElement("section");
+  secondaryMetricsRow.className = "metrics-row";
+  secondaryMetricsRow.id = "secondary-metrics-row";
+  secondaryMetricsRow.setAttribute("aria-label", "Secondary metrics");
+
   const pivotMount = document.createElement("section");
   pivotMount.id = "pivot-mount";
   pivotMount.setAttribute("aria-label", "Matter metrics measured");
 
-  root.append(header, metricsRow, pivotMount);
+  root.append(header, metricsRow, secondaryMetricsRow, pivotMount);
 
   return {
     metricsRow,
+    secondaryMetricsRow,
     pivotMount,
   };
 }

@@ -22,6 +22,21 @@ const DEFAULT_METRICS: MetricDefinition[] = [
   },
 ];
 
+const SECONDARY_METRICS: MetricDefinition[] = [
+  {
+    id: "settlement-accepted",
+    title: "Settlement Accepted",
+    value: 18,
+    format: "integer",
+  },
+  {
+    id: "move-to-litigation-decision",
+    title: "Move to Litigation Decision",
+    value: 7,
+    format: "integer",
+  },
+];
+
 /**
  * Mounts TypeScript-built metric cards into the dashboard metrics row.
  */
@@ -40,6 +55,16 @@ export function mountMetricCards(
     });
     container.appendChild(card);
   }
+}
+
+/**
+ * Mounts the secondary integer metric cards between the primary row and pivot table.
+ */
+export function mountSecondaryMetricCards(
+  container: HTMLElement,
+  metrics: MetricDefinition[] = SECONDARY_METRICS
+): void {
+  mountMetricCards(container, metrics);
 }
 
 export { createMetricCard, createDeleteButton };

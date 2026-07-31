@@ -1,5 +1,5 @@
 import { buildSkeleton } from "./skeleton.js";
-import { mountMetricCards } from "./metricCards.js";
+import { mountMetricCards, mountSecondaryMetricCards } from "./metricCards.js";
 import { mountPivotTable } from "./pivotTable.js";
 
 function bootstrap(): void {
@@ -8,8 +8,9 @@ function bootstrap(): void {
     throw new Error('Missing root element with id "app"');
   }
 
-  const { metricsRow, pivotMount } = buildSkeleton(root);
+  const { metricsRow, secondaryMetricsRow, pivotMount } = buildSkeleton(root);
   mountMetricCards(metricsRow);
+  mountSecondaryMetricCards(secondaryMetricsRow);
   mountPivotTable(pivotMount);
 }
 
